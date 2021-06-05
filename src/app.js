@@ -4,6 +4,7 @@ const hbs = require('hbs')
 const app = express()
 const forecast = require('../utils/forecast.js')
 const geocode = require('../utils/geocode.js')
+const port = process.env.PORT || 3000 //env port OR 3000 if none
 
 // Define paths for express & HBS config
 const publicDir = path.join(__dirname,'../public')
@@ -84,7 +85,7 @@ app.get('*', (req,res) =>{
 res.render('404',{"404Error":"This page was not found",title:"404",author:"Josh" })
 })
 
-app.listen(3000, () =>{
-    console.log('Server is running on port 3000')
+app.listen(port, () =>{
+    console.log('Server is running on port ' + port)
 })
 //<h1></h1>
