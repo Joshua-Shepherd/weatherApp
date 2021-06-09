@@ -4,6 +4,7 @@ const hbs = require('hbs')
 const app = express()
 const forecast = require('../utils/forecast.js')
 const geocode = require('../utils/geocode.js')
+const darkSky = require('../utils/darkSky.js')
 const port = process.env.PORT || 3000 //env port OR 3000 if none
 
 // Define paths for express & HBS config
@@ -63,7 +64,10 @@ app.get('/weather', (req,res) => {
     
     //log and lat fed back from res.body geocode.js
     //Refactoring data.latitude, data.longitude to destructured
-    forecast(latitude, longitude, (error, dataF) => {
+
+    darkSky(latitude, longitude, (error, dataDS) => {
+        //combine darksky and weatherstack 
+     forecast(latitude, longitude, (error, dataF) => {
         if(error){
             return res.send({error})
         }
@@ -71,12 +75,15 @@ app.get('/weather', (req,res) => {
             location:location,
             forecast: dataF,
             latitude:latitude,
-            longitude: longitude
+            longitude: longitude,
+            forecastDarkSky: dataDS
         })
     
-      })
-      console.log({latitude, longitude, location})
+       })
     })
+      //console.log({latitude, longitude, location})
+    })
+    
 }
 
 })
