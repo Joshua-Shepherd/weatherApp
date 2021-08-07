@@ -25,24 +25,10 @@ addressForm.addEventListener('submit', (e) =>{
         }else{
             messageOne.textContent = data.location
             messageTwo.textContent = data.forecast    
-            messageThree.textContent = data.forecastDarkSky
-            //replace index.hbs <iframe src url for weather radar to update with searched location - This works 
-           // document.querySelector('#weatherRadar').src=`https://embed.windy.com/embed2.html?lat=${data.latitude}&lon=${data.longitude}&detailLat=${data.latitude}&detailLon=${data.longitude}&width=650&height=450&zoom=5&level=surface&overlay=wind&product=ecmwf&menu=&message=&marker=&calendar=now&pressure=&type=map&location=coordinates&detail=&metricWind=default&metricTemp=default&radarRange=-1`
-           // document.querySelector('#weatherRadar2').src=`https://embed.windy.com/embed2.html?lat=${data.latitude}&lon=${data.longitude}&detailLat=${data.latitude}&detailLon=${data.longitude}&width=950&height=650&zoom=7&level=surface&overlay=radar&product=radar&menu=&message=&marker=&calendar=24&pressure=&type=map&location=coordinates&detail=&metricWind=mph&metricTemp=%C2%B0F&radarRange=-1`
-           // console.log( `https://embed.windy.com/embed2.html?lat=${data.latitude}&lon=${data.longitude}&detailLat=${data.latitude}&detailLon=${data.longitude}&width=950&height=650&zoom=7&level=surface&overlay=radar&product=radar&menu=&message=&marker=&calendar=24&pressure=&type=map&location=coordinates&detail=&metricWind=mph&metricTemp=%C2%B0F&radarRange=-1`)
-           
+            messageThree.textContent = data.forecastDarkSky         
         }
-        //data.error ? console.log(data.error) :   
+        
         })
     })
    }
 })
-
-
-/*<div>
-             <iframe width="650" height="450" src="https://embed.windy.com/embed2.html?lat=30.377&lon=-97.710&detailLat=30.377&detailLon=-97.710&width=650&height=450&zoom=5&level=surface&overlay=wind&product=ecmwf&menu=&message=&marker=&calendar=now&pressure=&type=map&location=coordinates&detail=&metricWind=default&metricTemp=default&radarRange=-1" frameborder="0"></iframe>
-         </div>
-    <div>
-                <iframe id="weatherRadar2" width="950" height="650" src="https://embed.windy.com/embed2.html?lat=-97.7437&lon=30.2711&detailLat=-97.7437&detailLon=30.2711&width=950&height=650&zoom=7&level=surface&overlay=radar&product=radar&menu=&message=&marker=&calendar=24&pressure=&type=map&location=coordinates&detail=&metricWind=mph&metricTemp=%C2%B0F&radarRange=-1" frameborder="0"></iframe>
-
-    </div>*/

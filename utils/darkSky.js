@@ -11,6 +11,7 @@ const darkSky = ( longitude,latitude, callback) => {
             callback('Unable to connect to darkSky service!',undefined)
           }else if(body.alerts === undefined){
             callback(undefined, body.daily.data[0].summary + ' It is currently ' + body.currently.temperature + ' degress out. There is a ' + body.currently.precipProbability + '% chance of rain.' )
+            //console.log(body)
           }else{
             
             callback(undefined, body.daily.data[0].summary + ' It is currently ' + body.currently.temperature + ' degress out. There is a ' + body.currently.precipProbability + '% chance of rain.' +'\n' +

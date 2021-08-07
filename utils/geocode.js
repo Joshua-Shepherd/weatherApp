@@ -1,7 +1,9 @@
 const request = require('request')
-let access_token = 'access_token=pk.eyJ1IjoiZ2h4b3N0IiwiYSI6ImNrODgzbGVldTA0bWkzam8xY213anZtcXMifQ.k2Io7wZ6iKxHtsmcVt-tPg&limit=1'
+const dote = require('dotenv')
+dote.config({path: './src/config/config.env'})
+
 const geocode = (address, callback) => {
-    const url = 'https://api.mapbox.com/geocoding/v5/mapbox.places/'+encodeURIComponent(address)+'.json?'+access_token
+    const url = 'https://api.mapbox.com/geocoding/v5/mapbox.places/'+encodeURIComponent(address)+'.json?'+'access_token='+process.env.GEOCODE_TOKEN
     request({
     url,
     json: true

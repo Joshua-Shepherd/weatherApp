@@ -1,11 +1,14 @@
 const path = require('path') //use path module to manipulate paths
 const express = require('express')
+const axios = require('axios');
 const hbs = require('hbs')
 const app = express()
 const forecast = require('../utils/forecast.js')
 const geocode = require('../utils/geocode.js')
 const darkSky = require('../utils/darkSky.js')
-const port = process.env.PORT || 3000 //env port OR 3000 if none
+const dbconfig = require('./config/db.config.js')
+const mongoose = require('mongoose')
+const port = process.env.PORT || 3000  //env port OR 3000 if none
 
 // Define paths for express & HBS config
 const publicDir = path.join(__dirname,'../public')
@@ -18,6 +21,10 @@ app.set('view engine', 'hbs')
 app.set('views', viewsPath)
 //static webpages
 app.use(express.static(publicDir)) //Automatically goes to root because index.html
+app.use(express.urlencoded({ extended: true}))
+// body parser content type = application/json
+app.use(express.json())
+require('./routes/routes')(app)
 //hbs set the partials path
 hbs.registerPartials(partialsPath)
 
@@ -67,7 +74,7 @@ app.get('/weather', (req,res) => {
 
     darkSky(latitude, longitude, (error, dataDS) => {
         //combine darksky and weatherstack 
-     forecast(latitude, longitude, (error, dataF) => {
+     forecast(latitude, longitude, (error, dataF,dataFdegree) => {
         if(error){
             return res.send({error})
         }
@@ -78,16 +85,63 @@ app.get('/weather', (req,res) => {
             longitude: longitude,
             forecastDarkSky: dataDS
         })
-    
+        //Auto log new forcast
+        const axios = require('axios');
+        var data = JSON.stringify({
+          "location": location,
+          "degrees": dataFdegree,
+          "forcast": dataF
+        });
+        
+        var config = {
+          method: 'post',
+          url: process.env.DEV_URL || process.env.STORMLITE_API,
+          headers: { 
+            'Content-Type': 'application/json'
+          },
+          data : data
+        };
+        
+        axios(config)
+        .then(function (response) {
+          console.log('Forcast recorded!');
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
+        
+         
        })
     })
-      //console.log({latitude, longitude, location})
+      
     })
     
 }
 
 })
 
+
+//MongoDB setup
+mongoose.Promise = global.Promise
+
+//initate the connection
+mongoose.connect(dbconfig.url, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+}).then(() =>{
+    console.log('Database connection successful')
+}).catch(err => {
+    console.log('Could not connect')
+    console.log(err)
+    process.exit()
+})
+
+
+// app.post('/api/postWeather', (req, res) =>{
+    
+// })
+
+//404 req
 app.get('*', (req,res) =>{
 res.render('404',{"404Error":"This page was not found",title:"404",author:"Josh" })
 })
@@ -95,4 +149,3 @@ res.render('404',{"404Error":"This page was not found",title:"404",author:"Josh"
 app.listen(port, () =>{
     console.log('Server is running on port ' + port)
 })
-//<h1></h1>
