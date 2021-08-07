@@ -125,7 +125,8 @@ app.get('/weather', (req,res) => {
 mongoose.Promise = global.Promise
 
 //initate the connection
-mongoose.connect(process.env.ATLAS_URL, {
+let urlAtlas = `mongodb+srv://${process.env.MONGO_DB_USER}:${process.env.MONGO_DB_PW}@${process.env.ATLAS_URL}?retryWrites=true&w=majority`
+mongoose.connect(urlAtlas, {
     useNewUrlParser: true,
     useUnifiedTopology: true
 }).then(() =>{
