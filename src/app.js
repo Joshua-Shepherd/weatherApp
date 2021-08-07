@@ -6,7 +6,7 @@ const app = express()
 const forecast = require('../utils/forecast.js')
 const geocode = require('../utils/geocode.js')
 const darkSky = require('../utils/darkSky.js')
-const dbconfig = require('./config/db.config.js')
+const dbconfigDev = require('./config/db.config.js')
 const mongoose = require('mongoose')
 const port = process.env.PORT || 3000  //env port OR 3000 if none
 
@@ -125,7 +125,7 @@ app.get('/weather', (req,res) => {
 mongoose.Promise = global.Promise
 
 //initate the connection
-mongoose.connect(dbconfig.url, {
+mongoose.connect(process.env.ATLAS_URL, {
     useNewUrlParser: true,
     useUnifiedTopology: true
 }).then(() =>{
