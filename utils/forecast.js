@@ -17,7 +17,7 @@ const forecast = (longitude, latitude, callback) => {
             callback(undefined,'Obeservation Time: ' + body.current.observation_time + ' -- ' + 'Wind Speed & Direction: ' + body.current.wind_dir + ' ' 
             + body.current.wind_speed + 'mph  Cloudcover: ' + body.current.cloudcover + '%  --' + ' Looks like: ' + body.current.weather_descriptions[0] + '-- Precipitation: '
             + body.current.precip + ". It is currently " + body.current.temperature +  " degress out. It feels like " + body.current.feelslike + 
-            " degress out. The humidity is " + body.current.humidity + "%.",body.current.temperature)}
+            " degress out. The humidity is " + body.current.humidity + "%.", body.current.temperature)}
     })  
 
 }

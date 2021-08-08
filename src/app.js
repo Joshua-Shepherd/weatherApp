@@ -115,7 +115,6 @@ app.get('/weather', (req,res) => {
     })
       
     })
-    
 }
 
 })
@@ -136,11 +135,6 @@ mongoose.connect(urlAtlas, {
     console.log(err)
     process.exit()
 })
-
-
-// app.post('/api/postWeather', (req, res) =>{
-    
-// })
 
 //404 req
 app.get('*', (req,res) =>{
