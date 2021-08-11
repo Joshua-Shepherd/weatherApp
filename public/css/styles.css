@@ -41,6 +41,9 @@ header {
 }
 
 h1 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     font-size: 64px;
     margin-bottom: 16px;
 }
@@ -58,3 +61,4 @@ h1 {
   width: 850px;
   height: 450px;
 }
+
