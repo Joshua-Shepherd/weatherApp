@@ -1,18 +1,33 @@
 body {
+   
     color: #bccfe8;
     font-family: arial;
-    max-width: 650px;
+    max-width: 2080px;
     margin: 0 auto;
     padding: 0 16px;
-
     display: flex;
     flex-direction: column ;
     min-height: 100vh;
 }
 .main-content {
     flex-grow: 1;
+  
+}
+
+.main-content form {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+}
+.main-content p {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
 }
 footer {
+ 
     color: #888888;
     border-top: 1px solid #eeeeee;
     margin-top: 16px;
@@ -20,7 +35,8 @@ footer {
 }
 
 header {
-    margin-top: 16px;
+   
+    margin-top: 38px;
     margin-bottom: 48px;
 }
 
@@ -29,25 +45,16 @@ h1 {
     margin-bottom: 16px;
 }
 
-header a {
-    color: #888888;
-    margin-right: 16px;
-    text-decoration: none;
-}
-
 .portrait {
     width: 250px;
 }
-
-input {
-    border: 1px solid #cccccc;
-    padding: 8px;
+.box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-button {
-    cursor: pointer;
-    border: 1px solid #cccccc;
-    background: #3c3c3c;
-    color: white;
-    padding: 8px;
+.box div {
+  width: 850px;
+  height: 450px;
 }

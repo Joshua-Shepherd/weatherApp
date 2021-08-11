@@ -1,34 +1,33 @@
-<!DOCTYPE html>
-
-<html>
-<head>
+<!doctype html>
+<html lang="en">
+  <head>
     <title>Stormlite</title>
-    <link rel="icon" href="/img/weather.png">
-<link rel="stylesheet" href="/css/styles.css">
-
-</head>
-
-<body>
-   
-
-    <div class="main-content">
- {{>header}} 
+     <link rel="icon" href="/img/weather.png">
+{{>header}} 
+  </head>
+  <body>
+    
+     <div class="main-content">
     <p> Use this Site to get your weather</p>   
-    <form>
-        <input placeholder="Location, City, or ZIP">
-        <button>Search</button>
+
+    <form class="form-inline my-2 my-lg-0">
+      <input class="form-control mr-sm-2" type="search" placeholder="Location, City, or ZIP" aria-label="Search">
+      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
     </form>
+       <div class="box">
+  			<div>
     <p id="inputLocation"> </p>
     <p id="inputForecast"> </p>
-    <p id="inputAlerts"> </p>
-
+    <p id="inputAlerts"> </p> 
+          </div>
+			  </div> 
     </div>
+    
     
      {{>footer}}
 
-     <script src="/js/app.js"></script> 
-</body>
-<footer>
-   
-</footer>
+     <script src="/js/app.js"></script>
+
+    
+  </body>
 </html>

@@ -53,6 +53,18 @@ app.get('/help', (req,res)=>{
     })
 })
 
+app.get('/4castHistory', (req,res)=>{
+    res.render('4castHistory', {
+        forecastText:"test",
+        author:"Josh",
+        title: '4CAST HISTORY'
+    })
+})
+
+app.get('/boot', (req,res)=>{
+    res.render('bootstrapTest')
+})
+
 //Sub help page not found
 app.get('/help/*', (req,res)=>{
     res.render('404',{"404Error":"Help Article not Found",title:"404",author:"Josh" })
