@@ -28,8 +28,6 @@ require('./routes/routes')(app)
 //hbs set the partials path
 hbs.registerPartials(partialsPath)
 
-
-
 app.get('', (req,res)=>{
     res.render('index', {
         title: 'Stormlite Weather',
