@@ -53,9 +53,9 @@ app.get('/help', (req,res)=>{
 
 app.get('/4castHistory', (req,res)=>{
     res.render('4castHistory', {
-        forecastText:"test",
+        forecastText:"Search by City",
         author:"Josh",
-        title: '4CAST HISTORY'
+        title: 'Forecast History'
     })
 })
 
