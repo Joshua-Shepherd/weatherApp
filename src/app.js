@@ -3,9 +3,6 @@ const express = require('express')
 const axios = require('axios');
 const hbs = require('hbs')
 const app = express()
-const forecast = require('../utils/forecast.js')
-const geocode = require('../utils/geocode.js')
-const darkSky = require('../utils/darkSky.js')
 const dbconfigDev = require('./config/db.config.js')
 const mongoose = require('mongoose')
 const port = process.env.PORT || 3000  //env port OR 3000 if none
@@ -14,7 +11,7 @@ const port = process.env.PORT || 3000  //env port OR 3000 if none
 const publicDir = path.join(__dirname,'../public')
 const viewsPath = path.join(__dirname,'../templates/views')
 const partialsPath = path.join(__dirname,'../templates/partials')
-
+console.log('Server side JS')
 //set express to use a view engine called handlebars, a special version made express called hbs
 app.set('view engine', 'hbs')
 //Handlebars directory path set
@@ -28,106 +25,22 @@ require('./routes/routes')(app)
 //hbs set the partials path
 hbs.registerPartials(partialsPath)
 
-app.get('', (req,res)=>{
-    res.render('index', {
-        title: 'Stormlite Weather',
-        author: 'Josh'
-    })
-})
+//Static Routes
+    //Forcast Search -- Home page
+    app.get('/', (req,res)=>{ res.render('index', { title: 'Stormlite Weather', author: 'Josh' }) })
+    //About page
+    app.get('/about', (req,res)=>{ res.render('about', { author:"Josh", Location: "Austin, TX", title: "About me" }) })
+    //Help Page
+    app.get('/help', (req,res)=>{ res.render('help', { HelpText:"HelpFul Text", author:"Josh", title: 'Help Page' }) })
+    //Forcast History page 
+    app.get('/4castHistory', (req,res)=>{ res.render('4castHistory', {forecastText:"Search by City", author:"Josh",title: 'Forecast History' }) })
+    //Bootstrap testpage
+    app.get('/boot', (req,res)=>{ res.render('bootstrapTest')})    
+    //Sub help page not found
+    app.get('/help/*', (req,res)=>{ res.render('404',{"404Error":"Help Article not Found",title:"404",author:"Josh" }) })
+    //404 req
+    app.get('*', (req,res) =>{ res.render('404',{"404Error":"This page was not found",title:"404",author:"Josh" }) })
 
-app.get('/about', (req,res)=>{
-    res.render('about', {
-        author:"Josh",
-        Location: "Austin, TX",
-        title: "About me"
-    })
-})
-
-app.get('/help', (req,res)=>{
-    res.render('help', {
-        HelpText:"HelpFul Text",
-        author:"Josh",
-        title: 'Help Page'
-    })
-})
-
-app.get('/4castHistory', (req,res)=>{
-    res.render('4castHistory', {
-        forecastText:"Search by City",
-        author:"Josh",
-        title: 'Forecast History'
-    })
-})
-
-app.get('/boot', (req,res)=>{
-    res.render('bootstrapTest')
-})
-
-//Sub help page not found
-app.get('/help/*', (req,res)=>{
-    res.render('404',{"404Error":"Help Article not Found",title:"404",author:"Josh" })
-})
-
-app.get('/weather', (req,res) => {
-    //!req.query.address ? res.send({ERROR: "No Addess entered"}) :
-    if(!req.query.address){
-         res.send({ERROR: "No Addess entered"})
-    }else if(req.query.address){
-
-    geocode(req.query.address, ( error, {latitude, longitude, location} = {} ) => {
-        if(error){
-            return res.send({error})//console.log(err)
-        }
-    
-    //log and lat fed back from res.body geocode.js
-    //Refactoring data.latitude, data.longitude to destructured
-
-    darkSky(latitude, longitude, (error, dataDS) => {
-        //combine darksky and weatherstack 
-     forecast(latitude, longitude, (error, dataF,dataFdegree) => {
-        if(error){
-            return res.send({error})
-        }
-        res.send({
-            location:location,
-            forecast: dataF,
-            latitude:latitude,
-            longitude: longitude,
-            forecastDarkSky: dataDS
-        })
-        //Auto log new forcast
-        const axios = require('axios');
-        var data = JSON.stringify({
-          "location": location,
-          "degrees": dataFdegree,
-          "forcast": dataF
-        });
-        
-        var config = {
-          method: 'post',
-          url: process.env.DEV_URL || process.env.STORMLITE_API,
-          headers: { 
-            'Content-Type': 'application/json'
-          },
-          data : data
-        };
-        
-        axios(config)
-        .then(function (response) {
-          console.log('Forcast recorded!');
-        })
-        .catch(function (error) {
-          console.log(error);
-        });
-        
-         
-       })
-    })
-      
-    })
-}
-
-})
 
 
 //MongoDB setup
@@ -146,11 +59,8 @@ mongoose.connect(urlAtlas, {
     process.exit()
 })
 
-//404 req
-app.get('*', (req,res) =>{
-res.render('404',{"404Error":"This page was not found",title:"404",author:"Josh" })
-})
 
+//Webserver Listener
 app.listen(port, () =>{
     console.log('Server is running on port ' + port)
 })

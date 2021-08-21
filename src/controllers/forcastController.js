@@ -1,4 +1,6 @@
 const Forcast = require('../models/forcastModel.js')
+var MongoClient = require('mongodb').MongoClient;
+let url = `mongodb+srv://${process.env.MONGO_DB_USER}:${process.env.MONGO_DB_PW}@${process.env.ATLAS_URL}?retryWrites=true&w=majority`
 
 //Create new Forcast
 exports.create = (req, res) => {
@@ -63,6 +65,23 @@ exports.findOne = (req, res) => {
     });
 };
 
+//Query DB for City forcasts
+exports.queryOne = (req , res) => {
+    Forcast.find({location : `${req.query.cityName}` },{__v:0,_id:0 })/*.limit(10)*/
+    .then(result => {
+        res.send(result)
+        // result.forEach(data => {
+        //     console.log(data.location)
+        // })
+        console.log(result[0].location)
+        
+    }).catch(err => {
+        if(err){
+            console.log('Error: '+ err)
+            res.send(err)
+        }
+    })
+}
 
 //Update a Forcast
 exports.update = (req, res) => {

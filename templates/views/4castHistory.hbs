@@ -1,11 +1,10 @@
 <!DOCTYPE html>
-<html>
 
 <head>
     <title>Forecast History</title>
     <link rel="icon" href="/img/weather.png">
      {{>header}} 
-    
+
     
 </head>
 
@@ -16,8 +15,8 @@
      <h2>Forcast | Location - History</h2>
      
     <p>{{forecastText}}</p>
-    <form class="form-inline my-2 my-lg-0" id="forecastSearch">
-      <input class="form-control mr-sm-2" type="search" placeholder="Enter City" aria-label="Search">
+    <form class="form-inline my-2 my-lg-0" id="forcastSearch" >
+      <input class="form-control mr-sm-2" type="search" placeholder="Enter City" aria-label="Search" id="inputCity">
       <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
     </form>
     <div class="box">
@@ -33,16 +32,11 @@
   <tbody>
     <tr>
      
-      <td>Austin, Texas, United States</td>
-      <td>99</td>
-      <td>@Obeservation Time: 10:18 PM -- Wind Speed & Direction: ESE 7mph Cloudcover: 0% -- Looks like: Sunny-- Precipitation: 0. It is currently 99 degress out. It feels like 108 degress out. The humidity is 33%.</td>
+      <td id='idLocation'> </td>
+      <td id='idDegree'> </td>
+      <td id='idForcast'> </td>
     </tr>
-    <tr>
-      
-      <td>Austin, Texas, United States</td>
-      <td>82</td>
-      <td>Obeservation Time: 10:20 PM -- Wind Speed & Direction: N 0mph Cloudcover: 0% -- Looks like: Smoke-- Precipitation: 0. It is currently 82 degress out. It feels like 82 degress out. The humidity is 51%.</td>
-    </tr>
+    
  
   </tbody>
 </table>
@@ -50,7 +44,7 @@
           </div>
 			  </div> 
     </div>
-
+    <script src="/js/getApp.js"></script>
    {{>footer}}
 </body>
 <footer>
