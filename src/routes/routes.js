@@ -57,7 +57,7 @@ module.exports = (app) => {
                // console.log(location)
                 var config = {
                     method: 'get',
-                    url: process.env.FETCH_URL+location || process.env.STORMLITE_FETCH+location,
+                    url: process.env.FETCH_URL+location || `https://stormlite.herokuapp.com/api/weatherHistory?cityName=${location}`,
                     headers: { }
                   };
                   
@@ -71,7 +71,7 @@ module.exports = (app) => {
             })
             
         } })
-
+      
         //Forcast Search Route
     app.get('/weather', (req,res) => {
         if(!req.query.address){
