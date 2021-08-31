@@ -3,6 +3,8 @@
 <head>
     <title>Forecast History</title>
     <link rel="icon" href="/img/weather.png">
+     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  
      {{>header}} 
 
     
@@ -18,30 +20,34 @@
     <form class="form-inline my-2 my-lg-0" id="forcastSearch" >
       <input class="form-control mr-sm-2" type="search" placeholder="Enter City" aria-label="Search" id="inputCity">
       <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+      <button class="btn btn-outline-secondary my-2 my-sm-0" type="click">Clear Table</button>
     </form>
     <div class="box">
-  			<div>
+        
+  		<div>
     <table class="table" id="forecastTable">
   <thead class="thead-dark">
     <tr>
       <th scope="col">Location</th>
       <th scope="col">F°</th>
       <th scope="col">Forecast</th>
+      <th scope="col">Created At</th>
     </tr>
-  </thead>
+  </thead>	
   <tbody>
-    <tr>
+    {{!-- <tr>
      
       <td id='idLocation'> </td>
       <td id='idDegree'> </td>
       <td id='idForcast'> </td>
-    </tr>
+    </tr> --}}
     
  
   </tbody>
+ 
 </table>
 
-          </div>
+          </div> 
 			  </div> 
     </div>
     <script src="/js/getApp.js"></script>

@@ -1,5 +1,4 @@
-//alert('Ugh oh Need help')
-//console.log('Clientside JS')
+console.log('Clientside JS')
 const addressForm = document.querySelector('form')//target index.hbs <form> 
 const search = document.querySelector('input') //Target Form input  index.hbs <input placeholder="Location, City, or ZIP">
 const messageOne = document.querySelector('#inputLocation')//target 'id'  index.hbs <p id="inputLocation"> </p>

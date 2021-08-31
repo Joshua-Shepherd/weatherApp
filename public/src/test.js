@@ -1,6 +1,6 @@
 {   
-    /**
-     * populates Data table with data
+    /** Testing: Building a Data Table
+     * populate Data table with data
      * 
      * @param {HTMLDivElement} root 
      */

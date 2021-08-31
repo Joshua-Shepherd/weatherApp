@@ -5,19 +5,23 @@
   "main": "app.js",
   "scripts": {
     "start": "node src/app.js",
-    "dev": "nodemon src/app.js -e js,hbs,html,css"
+    "dev": "nodemon src/app.js -e js,hbs,html,css,ejs",
+    "test": "nodemon src/test.js -e js, hbs, html, css, ejs"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "axios": "^0.21.1",
+    "chance": "^1.1.7",
+    "consolidate": "^0.16.0",
     "dotenv": "^10.0.0",
     "ejs": "^3.1.6",
     "express": "^4.17.1",
     "hbs": "^4.1.2",
     "locus": "^2.0.4",
     "mongoose": "^5.13.5",
-    "request": "^2.88.2"
+    "request": "^2.88.2",
+    "shuffle-array": "^1.0.1"
   },
   "devDependencies": {
     "nodemon": "^2.0.7"

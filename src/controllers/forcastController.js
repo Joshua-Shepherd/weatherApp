@@ -5,7 +5,7 @@ let url = `mongodb+srv://${process.env.MONGO_DB_USER}:${process.env.MONGO_DB_PW}
 //Create new Forcast
 exports.create = (req, res) => {
     //Need to validate req
-    if(!req.body.location && !req.body.forcast && !req.body.degrees){
+    if(!req.body.location && !req.body.forcast && !req.body.degree){
         return res.status(400).send({
             message: "Location or Forcast connot be blank"
         })
@@ -14,7 +14,7 @@ exports.create = (req, res) => {
     //Create Forcast
     const forcastCreate = new Forcast({
         location: req.body.location,
-        degree: req.body.degrees,
+        degree: req.body.degree,
         forcast: req.body.forcast
     })
 
@@ -67,14 +67,12 @@ exports.findOne = (req, res) => {
 
 //Query DB for City forcasts
 exports.queryOne = (req , res) => {
-    Forcast.find({location : `${req.query.cityName}` },{__v:0,_id:0 })/*.limit(10)*/
-    .then(result => {
-        res.send(result)
-        // result.forEach(data => {
-        //     console.log(data.location)
-        // })
-        console.log(result[0].location)
-        
+    Forcast.find({location : `${req.query.cityName}` },{__v:0,_id:0 }).limit(5)
+    .then(queryResult => {
+       // res.render('index.ejs',{data:queryResult})
+        // console.log(queryResult)
+        // res.send({data:queryResult})
+         res.send(queryResult)
     }).catch(err => {
         if(err){
             console.log('Error: '+ err)
@@ -95,7 +93,7 @@ exports.update = (req, res) => {
     // Find forcast and update it with the request body
     Forcast.findByIdAndUpdate(req.params.forcastId, {
         location: req.body.location,
-        degree: req.body.degrees,
+        degree: req.body.degree,
         forcast: req.body.forcast
     }, {new: true})
     .then(forcast => {
