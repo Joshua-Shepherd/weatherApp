@@ -58,7 +58,7 @@ module.exports = (app) => {
 
                 var config = {
                     method: 'get',
-                    url: process.env.FETCH_URL+location || `/api/weatherHistory?cityName=${location}`,
+                    url: `/api/weatherHistory?cityName=${location}`,
                     headers: { }
                   };
 //                   2021-08-31T01:42:34.908451+00:00 app[web.1]: _currentUrl: 'http:undefinedAustin,%20Texas,%20United%20States',
