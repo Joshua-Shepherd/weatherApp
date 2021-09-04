@@ -67,11 +67,8 @@ exports.findOne = (req, res) => {
 
 //Query DB for City forcasts
 exports.queryOne = (req , res) => {
-    Forcast.find({location : `${req.query.cityName}` },{__v:0,_id:0 }).limit(5)
+    Forcast.find({location : `${req.query.cityName}` },{__v:0,_id:0 })
     .then(queryResult => {
-       // res.render('index.ejs',{data:queryResult})
-        // console.log(queryResult)
-        // res.send({data:queryResult})
          res.send(queryResult)
     }).catch(err => {
         if(err){
@@ -80,7 +77,7 @@ exports.queryOne = (req , res) => {
         }
     })
 }
-
+ 
 //Update a Forcast
 exports.update = (req, res) => {
     // Validate Request
