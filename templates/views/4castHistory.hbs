@@ -28,21 +28,14 @@
     <table class="table" id="forecastTable">
   <thead class="thead-dark">
     <tr>
-      <th scope="col">Location</th>
-      <th scope="col">F°</th>
-      <th scope="col">Forecast</th>
-      <th scope="col">Created At</th>
+      <th data-column="location" data-order="desc" scope="col">Location</th>
+      <th data-column="degree" data-order="desc" scope="col">F°</th>
+      <th data-column="forecast" data-order="desc" scope="col">Forecast</th>
+      <th data-column="createdAt" data-order="desc" scope="col">Created At</th>
     </tr>
   </thead>	
   <tbody>
-    {{!-- <tr>
-     
-      <td id='idLocation'> </td>
-      <td id='idDegree'> </td>
-      <td id='idForcast'> </td>
-    </tr> --}}
     
- 
   </tbody>
  
 </table>
@@ -52,6 +45,8 @@
     </div>
     <script src="/js/getApp.js"></script>
    {{>footer}}
+
+  
 </body>
 <footer>
     

@@ -80,6 +80,7 @@ h2 {
      margin-top: 38px;
      margin-bottom: 48px;
      width: auto;
+     align-items: center;
  
  }
  .table-refresh {
@@ -149,4 +150,11 @@ h2 {
 
 }
 
-
+canvas {
+    padding-left: 0;
+    padding-right: 0;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    width: 100px;
+}

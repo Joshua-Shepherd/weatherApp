@@ -22,7 +22,7 @@ addressForm.addEventListener('submit', (e) =>{
                 // errorMessage.textContent = response.error
             }else{  
                 buildTable(data)
-                console.log(data)
+                //console.log(data)
              }     
             }) 
         })

@@ -22,6 +22,9 @@ addressForm.addEventListener('submit', (e) =>{
         if(data.error){
             messageOne.textContent = data.error
         }else{
+            const icon = new Skycons({"color": "#cccccc"});
+            icon.set('icon', data.darkSkyData.currently.icon)
+            icon.play()
             messageOne.textContent = data.location
             messageTwo.textContent = data.forecast    
             messageThree.textContent = data.forecastDarkSky         

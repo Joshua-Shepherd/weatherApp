@@ -61,9 +61,6 @@ module.exports = (app) => {
                     url: `${process.env.STORMLITE_FETCH}=${location}`,
                     headers: { }
                   };
-//                   2021-08-31T01:42:34.908451+00:00 app[web.1]: _currentUrl: 'http:undefinedAustin,%20Texas,%20United%20States',
-//                     2021-08-31T01:42:34.908451+00:00 app[web.1]: [Symbol(kCapture)]: false
-//                      2021-08-31T01:42:34.908451+00:00 app[web.1]: },
                   axios(config)
                   .then(function (response) {
                     res.send(JSON.stringify(response.data));
@@ -88,18 +85,18 @@ module.exports = (app) => {
                 return res.send({error})//console.log(err)
             }
 
-        darkSky(latitude, longitude, (error, dataDS) => { //log and lat fed back from res.body geocode.js
+        darkSky(latitude, longitude, (error, dataDS, DSdata) => { //log and lat fed back from res.body geocode.js
             //combine darksky and weatherstack 
             if(error){
                 return res.send({error})
             }
-
+            //console.log(DSdata)
         forecast(latitude, longitude, (error, dataF,dataFdegree) => {
             if(error){
                 return res.send({error})
             }
             res.send({
-                location:location, forecast: dataF, latitude:latitude, longitude: longitude, forecastDarkSky: dataDS
+                location:location, forecast: dataF, latitude:latitude, longitude: longitude, forecastDarkSky: dataDS, darkSkyData: DSdata
             })
             //Auto log new forcast
             
